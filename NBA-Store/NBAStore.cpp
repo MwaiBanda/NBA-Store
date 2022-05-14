@@ -474,9 +474,9 @@ Player* NBAStore::getEasternPlayers(sqlite3 *db){
             player.ID = sqlite3_column_int(pRes, 0);
             player.firstName = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 1));
             player.lastName = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
-            player.team = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
-            player.position = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
-            player.number = sqlite3_column_int(pRes, 0);
+            player.team = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 3));
+            player.position = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 4));
+            player.number = sqlite3_column_int(pRes, 5);
             players[count] = player;
             count++;
         }
@@ -514,9 +514,9 @@ Player* NBAStore::getWesternPlayers(sqlite3 *db){
             player.ID = sqlite3_column_int(pRes, 0);
             player.firstName = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 1));
             player.lastName = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
-            player.team = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
-            player.position = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
-            player.number = sqlite3_column_int(pRes, 0);
+            player.team = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 3));
+            player.position = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 4));
+            player.number = sqlite3_column_int(pRes, 5);
             players[count] = player;
             count++;
         }
