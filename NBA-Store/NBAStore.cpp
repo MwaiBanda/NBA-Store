@@ -11,6 +11,8 @@ NBAStore::NBAStore(sqlite3 *db) {
     this->db = db;
 }
 
+const int NBAStore::MAX_DIVISIONS = 3;
+
 int NBAStore::initMenu() {
     int choice = mainMenu();
     while (true)
@@ -36,7 +38,7 @@ int NBAStore::mainMenu(){
         if (!cin)
         {
             cin.clear();
-            cin.ignore(1000,'/n');
+            cin.ignore(1000,'\n');
         }
         cout << "That is not a valid choice." << endl << endl;
         printMainMenuOptions();
@@ -54,7 +56,7 @@ int NBAStore::subMenu() {
         if (!cin)
         {
             cin.clear();
-            cin.ignore(1000,'/n');
+            cin.ignore(1000,'\n');
         }
         cout << "That is not a valid choice." << endl << endl;
         printMenuOptions();
@@ -85,7 +87,7 @@ int NBAStore::easternConference() {
     {
         switch (choice)
         {
-            case 1: easternConference(); break;
+            case 1: getEasternDivisions(db); break;
             case 2: westernConference(); break;
             case -1: return 0;
             default: cout << "That is not a valid choice." << endl;
@@ -101,7 +103,7 @@ int NBAStore::westernConference() {
     {
         switch (choice)
         {
-            case 1: easternConference(); break;
+            case 1: getWesternDivisions(db); break;
             case 2: westernConference(); break;
             case -1: return 0;
             default: cout << "That is not a valid choice." << endl;
@@ -109,4 +111,74 @@ int NBAStore::westernConference() {
         cout << "\n\n";
         choice = subMenu();
     }
+}
+
+Division* NBAStore::getEasternDivisions(sqlite3* db){
+    Division* divisions = new Division[MAX_DIVISIONS];
+    string query = "SELECT Divisions.ID, Divisions.Name "\
+    "FROM EasternConference "\
+    "JOIN Divisions "\
+    "ON Divisions.ID = EasternConference.DivisionID;";
+    string errorMsg;
+    sqlite3_stmt *pRes;
+    int count = 0;
+    if (sqlite3_prepare_v2(db, query.c_str(), -1, &pRes, NULL) != SQLITE_OK)
+    {
+        errorMsg = sqlite3_errmsg(db);
+        sqlite3_finalize(pRes);
+        cout << "There was an error: " << errorMsg << endl;
+    }
+    else
+    {
+        cout << endl;
+        while (sqlite3_step(pRes) == SQLITE_ROW)
+        {
+            cout  << count + 1 << ". " << sqlite3_column_text(pRes, 1);
+            cout << endl;
+            Division division = Division();
+            division.ID = sqlite3_column_int(pRes, 0);
+            division.name = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 1));
+            divisions[count] = division;
+            count++;
+        }
+        
+        
+        sqlite3_reset(pRes);
+    }
+    return divisions;
+}
+
+Division* NBAStore::getWesternDivisions(sqlite3* db){
+    Division* divisions = new Division[MAX_DIVISIONS];
+    string query = "SELECT Divisions.ID, Divisions.Name "\
+    "FROM WesternConference "\
+    "JOIN Divisions "\
+    "ON Divisions.ID = WesternConference.DivisionID;";
+    string errorMsg;
+    sqlite3_stmt *pRes;
+    int count = 0;
+    if (sqlite3_prepare_v2(db, query.c_str(), -1, &pRes, NULL) != SQLITE_OK)
+    {
+        errorMsg = sqlite3_errmsg(db);
+        sqlite3_finalize(pRes);
+        cout << "There was an error: " << errorMsg << endl;
+    }
+    else
+    {
+        cout << endl;
+        while (sqlite3_step(pRes) == SQLITE_ROW)
+        {
+            cout  << count + 1 << ". " << sqlite3_column_text(pRes, 1);
+            cout << endl;
+            Division division = Division();
+            division.ID = sqlite3_column_int(pRes, 0);
+            division.name = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 1));
+            divisions[count] = division;
+            count++;
+        }
+        
+        
+        sqlite3_reset(pRes);
+    }
+    return divisions;
 }

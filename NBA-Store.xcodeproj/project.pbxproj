@@ -31,6 +31,7 @@
 		81624E39282F5A1D008BBBE3 /* NBAStore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NBAStore.cpp; sourceTree = "<group>"; };
 		81624E3A282F5A1D008BBBE3 /* NBAStore.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NBAStore.hpp; sourceTree = "<group>"; };
 		81624E3F282F5AF8008BBBE3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		81624E41282F6F5A008BBBE3 /* Division.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Division.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +70,7 @@
 				81624E39282F5A1D008BBBE3 /* NBAStore.cpp */,
 				81624E3A282F5A1D008BBBE3 /* NBAStore.hpp */,
 				81624E38282F59F6008BBBE3 /* NBA.db */,
+				81624E42282F71B6008BBBE3 /* Models */,
 			);
 			path = "NBA-Store";
 			sourceTree = "<group>";
@@ -79,6 +81,14 @@
 				81624E3F282F5AF8008BBBE3 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		81624E42282F71B6008BBBE3 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				81624E41282F6F5A008BBBE3 /* Division.h */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
