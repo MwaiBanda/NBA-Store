@@ -130,37 +130,43 @@ int NBAStore::westernConference() {
 void NBAStore::easternDivisions() {
     Division* divisions;
     divisions = getEasternDivisions(db);
-    
+    delete[] divisions;
 }
 void NBAStore::easternTeams() {
     Team* teams;
     teams = getEasternTeams(db);
+    delete[] teams;
 }
 void NBAStore::easternPlayers(){
     Player* players;
     players = getEasternPlayers(db);
+    delete[] players;
 }
 void NBAStore::easternArenas() {
     Arena* arenas;
     arenas = getEasternArenas(db);
+    delete[] arenas;
 }
 
 void NBAStore::westernDivisions() {
     Division* divisions;
     divisions = getWesternDivisions(db);
-    
+    delete[] divisions;
 }
 void NBAStore::westernTeams() {
     Team* teams;
     teams = getWesternTeams(db);
+    delete[] teams;
 }
 void NBAStore::westernPlayers(){
     Player* players;
     players = getWesternPlayers(db);
+    delete[] players;
 }
 void NBAStore::westernArenas() {
     Arena* arenas;
     arenas = getWesternArenas(db);
+    delete[] arenas;
 }
 
 Division* NBAStore::getEasternDivisions(sqlite3* db){
