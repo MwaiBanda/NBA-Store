@@ -10,12 +10,22 @@
 
 #include <stdio.h>
 #include "sqlite3.h"
+#include <iostream>
+
+using namespace std;
 
 class NBAStore {
 public:
     NBAStore(sqlite3 *db);
-    void initMenu();
+    int initMenu();
+    
 private:
+    int mainMenu();
+    int subMenu();
+    void printMainMenuOptions();
+    void printMenuOptions();
+    int easternConference();
+    int westernConference();
     sqlite3 *db;
 };
 
