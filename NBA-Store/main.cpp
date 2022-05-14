@@ -6,9 +6,22 @@
 //
 
 #include <iostream>
+#include "sqlite3.h"
+#include "NBAStore.hpp"
 
 int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+    sqlite3 *db;
+    int rc;
+    rc = sqlite3_open("NBA.db", &db);
+    
+    if( rc ) {
+        fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
+        return(1);
+    } else {
+        fprintf(stderr, "Opened database successfully\n");
+        NBAStore store = NBAStore(db);
+        store.initMenu();
+        
+    }
     return 0;
 }

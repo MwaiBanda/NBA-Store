@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		81624E32282F5896008BBBE3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81624E31282F5896008BBBE3 /* main.cpp */; };
+		81624E3B282F5A1D008BBBE3 /* NBAStore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 81624E39282F5A1D008BBBE3 /* NBAStore.cpp */; };
+		81624E40282F5AF8008BBBE3 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 81624E3F282F5AF8008BBBE3 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +27,10 @@
 /* Begin PBXFileReference section */
 		81624E2E282F5896008BBBE3 /* NBA-Store */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "NBA-Store"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81624E31282F5896008BBBE3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		81624E38282F59F6008BBBE3 /* NBA.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = NBA.db; sourceTree = "<group>"; };
+		81624E39282F5A1D008BBBE3 /* NBAStore.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = NBAStore.cpp; sourceTree = "<group>"; };
+		81624E3A282F5A1D008BBBE3 /* NBAStore.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = NBAStore.hpp; sourceTree = "<group>"; };
+		81624E3F282F5AF8008BBBE3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +38,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81624E40282F5AF8008BBBE3 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +50,7 @@
 			children = (
 				81624E30282F5896008BBBE3 /* NBA-Store */,
 				81624E2F282F5896008BBBE3 /* Products */,
+				81624E3E282F5AF8008BBBE3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +66,19 @@
 			isa = PBXGroup;
 			children = (
 				81624E31282F5896008BBBE3 /* main.cpp */,
+				81624E39282F5A1D008BBBE3 /* NBAStore.cpp */,
+				81624E3A282F5A1D008BBBE3 /* NBAStore.hpp */,
+				81624E38282F59F6008BBBE3 /* NBA.db */,
 			);
 			path = "NBA-Store";
+			sourceTree = "<group>";
+		};
+		81624E3E282F5AF8008BBBE3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				81624E3F282F5AF8008BBBE3 /* libsqlite3.tbd */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -120,6 +139,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81624E32282F5896008BBBE3 /* main.cpp in Sources */,
+				81624E3B282F5A1D008BBBE3 /* NBAStore.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
