@@ -41,6 +41,17 @@ private:
     void printMenuOptions();
     int easternConference();
     int westernConference();
+    
+    void easternDivisions();
+    void easternTeams();
+    void easternArenas();
+    void easternPlayers();
+    
+    void westernDivisions();
+    void westernTeams();
+    void westernArenas();
+    void westernPlayers();
+    
     Division* getEasternDivisions(sqlite3* db);
     Division* getWesternDivisions(sqlite3* db);
     Team* getEasternTeams(sqlite3* db);

@@ -95,11 +95,11 @@ int NBAStore::easternConference() {
     {
         switch (choice)
         {
-            case 1: getEasternDivisions(db); break;
-            case 2: getEasternTeams(db); break;
-            case 3: getEasternPlayers(db); break;
+            case 1: easternDivisions(); break;
+            case 2: easternTeams(); break;
+            case 3: easternPlayers(); break;
             case 4: getGames(db); break;
-            case 5: getEasternArenas(db); break;
+            case 5: easternArenas(); break;
             case -1: return 0;
             default: cout << "That is not a valid choice." << endl;
         }
@@ -114,17 +114,53 @@ int NBAStore::westernConference() {
     {
         switch (choice)
         {
-            case 1: getWesternDivisions(db); break;
-            case 2: getWesternTeams(db); break;
-            case 3: getWesternPlayers(db); break;
+            case 1: westernDivisions(); break;
+            case 2: westernTeams(); break;
+            case 3: westernPlayers(); break;
             case 4: getGames(db); break;
-            case 6: getEasternArenas(db); break;
+            case 6: westernArenas(); break;
             case -1: return 0;
             default: cout << "That is not a valid choice." << endl;
         }
         cout << "\n\n";
         choice = divisionsSubMenu();
     }
+}
+
+void NBAStore::easternDivisions() {
+    Division* divisions;
+    divisions = getEasternDivisions(db);
+    
+}
+void NBAStore::easternTeams() {
+    Team* teams;
+    teams = getEasternTeams(db);
+}
+void NBAStore::easternPlayers(){
+    Player* players;
+    players = getEasternPlayers(db);
+}
+void NBAStore::easternArenas() {
+    Arena* arenas;
+    arenas = getEasternArenas(db);
+}
+
+void NBAStore::westernDivisions() {
+    Division* divisions;
+    divisions = getWesternDivisions(db);
+    
+}
+void NBAStore::westernTeams() {
+    Team* teams;
+    teams = getWesternTeams(db);
+}
+void NBAStore::westernPlayers(){
+    Player* players;
+    players = getWesternPlayers(db);
+}
+void NBAStore::westernArenas() {
+    Arena* arenas;
+    arenas = getWesternArenas(db);
 }
 
 Division* NBAStore::getEasternDivisions(sqlite3* db){
