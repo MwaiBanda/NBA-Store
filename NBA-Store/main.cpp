@@ -21,8 +21,6 @@ int main(int argc, const char * argv[]) {
         fprintf(stderr, "Opened database successfully\n");
         NBAStore store = NBAStore(db);
         store.initMenu();
-   
-        
     }
     return 0;
 }

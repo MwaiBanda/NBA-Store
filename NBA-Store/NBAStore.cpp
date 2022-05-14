@@ -9,6 +9,7 @@
 
 const int NBAStore::MAX_DIVISIONS = 3;
 const int NBAStore::MAX_CONFERENCE_TEAMS = 9;
+const int NBAStore::MAX_CONFERENCE_ARENAS = 9;
 const int NBAStore::MAX_GAMES = 8;
 
 NBAStore::NBAStore(sqlite3 *db) {
@@ -83,7 +84,7 @@ void NBAStore::printMenuOptions() {
     cout << "2. View Teams" << endl;
     cout << "3. View Players" << endl;
     cout << "4. View Games" << endl;
-    cout << "6. View Arenas" << endl;
+    cout << "5. View Arenas" << endl;
     cout << "Enter Choice: ";
 }
 
@@ -96,6 +97,7 @@ int NBAStore::easternConference() {
             case 1: getEasternDivisions(db); break;
             case 2: getEasternTeams(db); break;
             case 4: getGames(db); break;
+            case 5: getEasternArenas(db); break;
             case -1: return 0;
             default: cout << "That is not a valid choice." << endl;
         }
@@ -113,6 +115,7 @@ int NBAStore::westernConference() {
             case 1: getWesternDivisions(db); break;
             case 2: getWesternTeams(db); break;
             case 4: getGames(db); break;
+            case 6: getEasternArenas(db); break;
             case -1: return 0;
             default: cout << "That is not a valid choice." << endl;
         }
@@ -327,4 +330,79 @@ Game* NBAStore::getGames(sqlite3 *db){
         sqlite3_reset(pRes);
     }
     return games;
+}
+
+
+Arena* NBAStore::getEasternArenas(sqlite3 *db){
+    Arena* arenas = new Arena[MAX_CONFERENCE_ARENAS];
+    string query = "SELECT Arenas.ID, Arenas.Name, Teams.Name  "\
+    "From EasternConference "\
+    "JOIN Teams "\
+    "ON Teams.DivisionID = EasternConference.DivisionID "\
+    "JOIN Arenas "\
+    "ON Arenas.ID = Teams.Arena;";
+    string errorMsg;
+    int count = 0;
+    if (sqlite3_prepare_v2(db, query.c_str(), -1, &pRes, NULL) != SQLITE_OK)
+    {
+        errorMsg = sqlite3_errmsg(db);
+        sqlite3_finalize(pRes);
+        cout << "There was an error: " << errorMsg << endl;
+    }
+    else
+    {
+        cout << endl;
+        while (sqlite3_step(pRes) == SQLITE_ROW)
+        {
+            cout  << count + 1 << ". " << sqlite3_column_text(pRes, 1) << " ("<< sqlite3_column_text(pRes, 2) << ")";
+            cout << endl;
+            Arena arena = Arena();
+            arena.ID = sqlite3_column_int(pRes, 0);
+            arena.name = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 1));
+            arena.team = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
+            arenas[count] = arena;
+            count++;
+        }
+        
+        
+        sqlite3_reset(pRes);
+    }
+    return arenas;
+}
+
+Arena* NBAStore::getWesternArenas(sqlite3 *db){
+    Arena* arenas = new Arena[MAX_CONFERENCE_ARENAS];
+    string query = "SELECT Arenas.ID, Arenas.Name, Teams.Name  "\
+    "From WesternConference "\
+    "JOIN Teams "\
+    "ON Teams.DivisionID = WesternConference.DivisionID "\
+    "JOIN Arenas "\
+    "ON Arenas.ID = Teams.Arena;";
+    string errorMsg;
+    int count = 0;
+    if (sqlite3_prepare_v2(db, query.c_str(), -1, &pRes, NULL) != SQLITE_OK)
+    {
+        errorMsg = sqlite3_errmsg(db);
+        sqlite3_finalize(pRes);
+        cout << "There was an error: " << errorMsg << endl;
+    }
+    else
+    {
+        cout << endl;
+        while (sqlite3_step(pRes) == SQLITE_ROW)
+        {
+            cout  << count + 1 << ". " << sqlite3_column_text(pRes, 1) << " ("<< sqlite3_column_text(pRes, 2) << ")";
+            cout << endl;
+            Arena arena = Arena();
+            arena.ID = sqlite3_column_int(pRes, 0);
+            arena.name = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 1));
+            arena.team = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
+            arenas[count] = arena;
+            count++;
+        }
+        
+        
+        sqlite3_reset(pRes);
+    }
+    return arenas;
 }
