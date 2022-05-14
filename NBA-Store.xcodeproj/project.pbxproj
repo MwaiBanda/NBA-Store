@@ -35,6 +35,7 @@
 		81624E43282F7ACF008BBBE3 /* Team.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
 		81624E44282F9113008BBBE3 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
 		81624E45282F9370008BBBE3 /* Arena.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arena.h; sourceTree = "<group>"; };
+		81624E46282FA5EA008BBBE3 /* Player.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +94,7 @@
 				81624E43282F7ACF008BBBE3 /* Team.h */,
 				81624E44282F9113008BBBE3 /* Game.h */,
 				81624E45282F9370008BBBE3 /* Arena.h */,
+				81624E46282FA5EA008BBBE3 /* Player.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";

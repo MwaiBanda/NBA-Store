@@ -15,6 +15,7 @@
 #include "Team.h"
 #include "Game.h"
 #include "Arena.h"
+#include "Player.h"
 
 using namespace std;
 
@@ -27,6 +28,7 @@ public:
     static const int MAX_DIVISIONS;
     static const int MAX_CONFERENCE_TEAMS;
     static const int MAX_CONFERENCE_ARENAS;
+    static const int MAX_CONFERENCE_PLAYERS;
     static const int MAX_GAMES;
     
 private:
@@ -46,7 +48,9 @@ private:
     Game* getGames(sqlite3* db);
     Arena* getEasternArenas(sqlite3* db);
     Arena* getWesternArenas(sqlite3* db);
-    
+    Player* getEasternPlayers(sqlite3* db);
+    Player* getWesternPlayers(sqlite3* db);
+
 };
 
 #endif /* NBAStore_hpp */

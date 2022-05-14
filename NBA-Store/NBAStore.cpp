@@ -10,6 +10,7 @@
 const int NBAStore::MAX_DIVISIONS = 3;
 const int NBAStore::MAX_CONFERENCE_TEAMS = 9;
 const int NBAStore::MAX_CONFERENCE_ARENAS = 9;
+const int NBAStore::MAX_CONFERENCE_PLAYERS = 27;
 const int NBAStore::MAX_GAMES = 8;
 
 NBAStore::NBAStore(sqlite3 *db) {
@@ -96,6 +97,7 @@ int NBAStore::easternConference() {
         {
             case 1: getEasternDivisions(db); break;
             case 2: getEasternTeams(db); break;
+            case 3: getEasternPlayers(db); break;
             case 4: getGames(db); break;
             case 5: getEasternArenas(db); break;
             case -1: return 0;
@@ -114,6 +116,7 @@ int NBAStore::westernConference() {
         {
             case 1: getWesternDivisions(db); break;
             case 2: getWesternTeams(db); break;
+            case 3: getWesternPlayers(db); break;
             case 4: getGames(db); break;
             case 6: getEasternArenas(db); break;
             case -1: return 0;
@@ -405,4 +408,85 @@ Arena* NBAStore::getWesternArenas(sqlite3 *db){
         sqlite3_reset(pRes);
     }
     return arenas;
+}
+
+
+Player* NBAStore::getEasternPlayers(sqlite3 *db){
+    Player* players = new Player[MAX_CONFERENCE_PLAYERS];
+    string query = "SELECT Players.ID, Players.FirstName, Players.Lastname, Teams.Name, Players.Position, Players.Number  "\
+    "From EasternConference "\
+    "JOIN Teams "\
+    "ON Teams.DivisionID = EasternConference.DivisionID "\
+    "JOIN Players "\
+    "ON Players.TeamID = Teams.ID;";
+    string errorMsg;
+    int count = 0;
+    if (sqlite3_prepare_v2(db, query.c_str(), -1, &pRes, NULL) != SQLITE_OK)
+    {
+        errorMsg = sqlite3_errmsg(db);
+        sqlite3_finalize(pRes);
+        cout << "There was an error: " << errorMsg << endl;
+    }
+    else
+    {
+        cout << endl;
+        while (sqlite3_step(pRes) == SQLITE_ROW)
+        {
+            cout  << endl << count + 1 << ". " << sqlite3_column_text(pRes, 1) << " "<< sqlite3_column_text(pRes, 2) << ":\n" << "Team: " << sqlite3_column_text(pRes, 3) << "\nPosition: " << sqlite3_column_text(pRes, 4);
+            cout << endl;
+            Player player = Player();
+            player.ID = sqlite3_column_int(pRes, 0);
+            player.firstName = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 1));
+            player.lastName = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
+            player.team = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
+            player.position = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
+            player.number = sqlite3_column_int(pRes, 0);
+            players[count] = player;
+            count++;
+        }
+        
+        
+        sqlite3_reset(pRes);
+    }
+    return players;
+}
+
+Player* NBAStore::getWesternPlayers(sqlite3 *db){
+    Player* players = new Player[MAX_CONFERENCE_PLAYERS];
+    string query = "SELECT Players.ID, Players.FirstName, Players.Lastname, Teams.Name, Players.Position, Players.Number  "\
+    "From WesternConference "\
+    "JOIN Teams "\
+    "ON Teams.DivisionID = WesternConference.DivisionID "\
+    "JOIN Players "\
+    "ON Players.TeamID = Teams.ID;";
+    string errorMsg;
+    int count = 0;
+    if (sqlite3_prepare_v2(db, query.c_str(), -1, &pRes, NULL) != SQLITE_OK)
+    {
+        errorMsg = sqlite3_errmsg(db);
+        sqlite3_finalize(pRes);
+        cout << "There was an error: " << errorMsg << endl;
+    }
+    else
+    {
+        cout << endl;
+        while (sqlite3_step(pRes) == SQLITE_ROW)
+        {
+            cout  << endl << count + 1 << ". " << sqlite3_column_text(pRes, 1) << " "<< sqlite3_column_text(pRes, 2) << ":\n" << "Team: " << sqlite3_column_text(pRes, 3) << "\nPosition: " << sqlite3_column_text(pRes, 4);
+            cout << endl;
+            Player player = Player();
+            player.ID = sqlite3_column_int(pRes, 0);
+            player.firstName = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 1));
+            player.lastName = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
+            player.team = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
+            player.position = reinterpret_cast<const char*>(sqlite3_column_text(pRes, 2));
+            player.number = sqlite3_column_int(pRes, 0);
+            players[count] = player;
+            count++;
+        }
+        
+        
+        sqlite3_reset(pRes);
+    }
+    return players;
 }
