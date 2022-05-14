@@ -33,6 +33,8 @@
 		81624E3F282F5AF8008BBBE3 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		81624E41282F6F5A008BBBE3 /* Division.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Division.h; sourceTree = "<group>"; };
 		81624E43282F7ACF008BBBE3 /* Team.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Team.h; sourceTree = "<group>"; };
+		81624E44282F9113008BBBE3 /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		81624E45282F9370008BBBE3 /* Arena.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Arena.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,8 @@
 			children = (
 				81624E41282F6F5A008BBBE3 /* Division.h */,
 				81624E43282F7ACF008BBBE3 /* Team.h */,
+				81624E44282F9113008BBBE3 /* Game.h */,
+				81624E45282F9370008BBBE3 /* Arena.h */,
 			);
 			path = Models;
 			sourceTree = "<group>";

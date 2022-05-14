@@ -12,4 +12,5 @@ struct Division {
     int ID;
     std::string name;
 };
+
 #endif /* Divisions_h */

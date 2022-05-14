@@ -13,18 +13,20 @@
 #include "sqlite3.h"
 #include "Division.h"
 #include "Team.h"
+#include "Game.h"
 
 using namespace std;
 
 class NBAStore {
 public:
     NBAStore(sqlite3 *db);
+    ~NBAStore();
     int initMenu();
 
 private:
     sqlite3* db;
     sqlite3_stmt *pRes;
-
+    
     int mainMenu();
     int divisionsSubMenu();
     void printMainMenuOptions();
@@ -35,9 +37,11 @@ private:
     Division* getWesternDivisions(sqlite3* db);
     Team* getEasternTeams(sqlite3* db);
     Team* getWesternTeams(sqlite3* db);
+    Game* getGames(sqlite3* db);
     
     static const int MAX_DIVISIONS;
-    static const int MAX_DIVISION_TEAMS;
+    static const int MAX_CONFERENCE_TEAMS;
+    static const int MAX_GAMES;
 
 };
 
